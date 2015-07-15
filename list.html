@@ -14,8 +14,8 @@
         <div class="gridWrapper">
 
         {% for code in page.codes %}
-        <div class="tile">
-          <div class="tileInner subIndex code">
+        <div class="tile subindex">
+          <div class="tileInner code" keywords="{{code.type}},{{code.keywords}}">
             <a href="../{{code.link}}"><p data-content="{{code.title}}"></p></a>
           </div>
         </div>
