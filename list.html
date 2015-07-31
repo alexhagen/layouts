@@ -17,7 +17,7 @@
           {% for post in site.categories[page.category] %}
           <div class="tile subindex">
             <div class="tileInner code" title="{{post.title}}" type="{{post.type}}" keywords="{{post.type}},{{post.keywords}}">
-              <a href="../{{post.link}}"><p data-content="{{post.title}}"></p></a>
+              <a href="../{{post.url}}"><p data-content="{{post.title}}"></p></a>
             </div>
           </div>
           {% endfor %}
