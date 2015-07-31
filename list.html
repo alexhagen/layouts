@@ -15,7 +15,7 @@
 
         {% for code in page.codes %}
         <div class="tile subindex">
-          <div class="tileInner code" keywords="{{code.type}},{{code.keywords}}">
+          <div class="tileInner code" title="{{code.title}}" type="{{code.type}}" keywords="{{code.type}},{{code.keywords}}">
             <a href="../{{code.link}}"><p data-content="{{code.title}}"></p></a>
           </div>
         </div>
