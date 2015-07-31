@@ -13,7 +13,8 @@
 
         <div class="gridWrapper">
 
-        {% if page.from_posts==true %}
+        {% if page.from_posts %}
+          {{ page.category }}
           {% for post in site.categories[page.category] %}
           <div class="tile subindex">
             <div class="tileInner code" title="{{post.title}}" type="{{post.type}}" keywords="{{post.type}},{{post.keywords}}">
