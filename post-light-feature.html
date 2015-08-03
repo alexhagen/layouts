@@ -1,6 +1,6 @@
 {% if page.feature.type == "chart" %}
 
-{% include head-dark.html %}
+{% include head.html %}
 
 <section class="article">
 
@@ -14,7 +14,7 @@
 	{% else %}
 	     {% break %}
 	{% endcase %}
-  	
+
   	<div class="chart" data-size={% include total.liquid chart=chart%}>
 	    {% for task in chart %}{% assign t=task[1] %}
 		    <div class="task {{ task[0] }}" data-size={% include subtotal.liquid t=t %} data-percentage={{ subtotal | times:100 | divided_by: total}}>
