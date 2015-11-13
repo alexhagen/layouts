@@ -11,23 +11,31 @@
           <!-- put the search/filter bar here -->
         </header>
 
-        <div class="gridWrapper">
+        <div class='grid'>
+    <a class='cell cv' href='cv/'>
+      <div class='title'>cv</div>
+    </a>
+    <a class='cell publications' href='papers/'>
+      <div class='title'>publications</div>
+    </a>
+    <a class='cell code' href='codes/'>
+      <div class='title'>code</div>
+    </a>
+    <a class='cell simulations' href='simulations/'>
+      <div class='title'>simulations</div>
+    </a>
 
         {% if page.from_posts %}
           {% for post in site.categories[page.category] %}
-          <div class="tile subindex">
-            <div class="tileInner code" title="{{post.title}}" type="{{post.type}}" keywords="{{post.type}},{{post.keywords}}">
-              <a href="../{{post.url}}"><p data-content="{{post.title}}"></p></a>
-            </div>
-          </div>
+          <a class="cell" href="../{{post.url}}" type="{{post.type}}" keywords="{{post.type}},{{post.keywords}}">
+            <div class='title'>{{post.title}}</div>
+          </a>
           {% endfor %}
         {% else %}
           {% for code in page.codes %}
-          <div class="tile subindex">
-            <div class="tileInner code" title="{{code.title}}" type="{{code.type}}" keywords="{{code.type}},{{code.keywords}}">
-              <a href="../{{code.link}}"><p data-content="{{code.title}}"></p></a>
-            </div>
-          </div>
+          <a class="cell" href="../{{code.link}}" type="{{code.type}}" keywords="{{code.type}},{{code.keywords}}">
+            <div class='title'>{{code.title}}</div>
+          </a>
           {% endfor %}
         {% endif %}
 
