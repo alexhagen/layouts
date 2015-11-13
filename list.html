@@ -12,19 +12,6 @@
         </header>
 
         <div class='grid'>
-    <a class='cell cv' href='cv/'>
-      <div class='title'>cv</div>
-    </a>
-    <a class='cell publications' href='papers/'>
-      <div class='title'>publications</div>
-    </a>
-    <a class='cell code' href='codes/'>
-      <div class='title'>code</div>
-    </a>
-    <a class='cell simulations' href='simulations/'>
-      <div class='title'>simulations</div>
-    </a>
-
         {% if page.from_posts %}
           {% for post in site.categories[page.category] %}
           <a class="cell" href="../{{post.url}}" type="{{post.type}}" keywords="{{post.type}},{{post.keywords}}">
