@@ -23,11 +23,7 @@
         {% if page.from_posts %}
           {% for post in site.categories[page.category] %}
           <a class="cell" href="../{{post.url}}" type="{{post.type}}" keywords="{{post.type}},{{post.keywords}}">
-            <div class='title'>
-                {% if post.long_title %}<div class='long-title'>{% endif %}
-                {{post.title}}
-                {% if post.long_title %}</div>{% endif %}
-            </div>
+            <div class='title'>{% if post.long_title %}<div class='long-title'>{% endif %}{{post.title}}{% if post.long_title %}</div>{% endif %}</div>
           </a>
           {% endfor %}
         {% else %}
