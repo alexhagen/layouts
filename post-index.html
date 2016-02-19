@@ -5,17 +5,21 @@
             <article class="archive-wrap">
                 <lh><h2><span class="bb">{{ page.title }}</span></h2></lh>
                 <div id="users">
-                    <button class="sort" data-sort="title">Sort by title</button>
-                    <button class="sort" data-sort="date">Sort by date</button>
+                    <div class="sort-buttons">
+                        <button class="sort" data-sort="title">Sort by title</button>
+                        <button class="sort" data-sort="date">Sort by date</button>
+                    </div>
 
-                    <button id="clear-filter">clear</button>
-                    {% assign str = '' %}
-                    {% assign array = str | split:';' | sort %}
-                    {% capture keywords %}{% for post in site.categories[page.category] %}{% assign localarray = post.keywords | split:',' | sort %}{% for keyword in localarray %}{% unless array contains keyword %}{{ keyword }};{% capture keywordsstr %}{{ keywordsstr }};{{ keyword }}{% endcapture %}{% assign array = keywordsstr | split: ';' | sort %}{% endunless %}{% endfor %}{% endfor %}{% endcapture %}
-                    {% assign sortedkeywords = keywords | split: ';' | sort %}
-                    {% for keyword in sortedkeywords %}
-                        <button class="filter">{{ keyword }}</button>
-                    {% endfor %}
+                    <div class="filter-buttons">
+                        <button id="clear-filter">clear</button>
+                        {% assign str = '' %}
+                        {% assign array = str | split:';' | sort %}
+                        {% capture keywords %}{% for post in site.categories[page.category] %}{% assign localarray = post.keywords | split:',' | sort %}{% for keyword in localarray %}{% unless array contains keyword %}{{ keyword }};{% capture keywordsstr %}{{ keywordsstr }};{{ keyword }}{% endcapture %}{% assign array = keywordsstr | split: ';' | sort %}{% endunless %}{% endfor %}{% endfor %}{% endcapture %}
+                        {% assign sortedkeywords = keywords | split: ';' | sort %}
+                        {% for keyword in sortedkeywords %}
+                            <button class="filter">{{ keyword }}</button>
+                        {% endfor %}
+                    </div>
 
 
                     <ul class="list">
