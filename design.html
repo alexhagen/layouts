@@ -1,17 +1,34 @@
----
-layout: post-light-feature
-image:
-  feature: typewriter.jpg
----
-<div class="design">
+{% include head-light.html %}
 
-  <header class="post-header">
-    <h1 class="post-title">{{ page.title }}</h1>
-    <p class="post-meta">{{ page.date | date: "%b %-d, %Y" }}{% if page.author %} • {{ page.author }}{% endif %}{% if page.meta %} • {{ page.meta }}{% endif %}</p>
-  </header>
+<section class="article">
+  <div class="featured-image">
+      <div class="engdrawing">
+          <div class="titleblock">
+              <div class="title"><span>{{ page.title }}</span></div>
+              <div class="date">
+                  {{ page.date | date: "%m/%-d/%y" }}
+                  <div class="datefield"></div>
+              </div>
+              <div class="author">
+                  {{ page.author }}
+                  <div class="authorfield"></div>
+              </div>
+          </div>
+          <div class="views"><span>View 1</span><span>View 2</span><span>View 3</span></div>
+          <div class="engr-content">
+          </div>
+      </div>
+  </div>
 
-  <article class="post-content">
-    {{ content }}
-  </article>
+  <div class="design">
 
-</div>
+
+    <article class="post-content">
+      {{ content }}
+    </article>
+
+  </div>
+</section>
+
+
+{% include footer.html %}
