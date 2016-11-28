@@ -20,12 +20,28 @@
                 <button id="clear-filter">clear</button>
                 {% assign str = '' %}
                 {% assign array = str | split:';' | sort %}
+                {% if page.from_posts %}
                 {% capture keywords %}{% for post in site.categories[page.category] %}{% assign localarray = post.keywords | split:',' | sort %}{% for keyword in localarray %}{% unless array contains keyword %}{{ keyword }};{% capture keywordsstr %}{{ keywordsstr }};{{ keyword }}{% endcapture %}{% assign array = keywordsstr | split: ';' | sort %}{% endunless %}{% endfor %}{% endfor %}{% endcapture %}
+                {% else %}
+                {% capture keywords %}{% for code in page.codes %}{% assign localarray = code.keywords | split:',' | sort %}{% for keyword in localarray %}{% unless array contains keyword %}{{ keyword }};{% capture keywordsstr %}{{ keywordsstr }};{{ keyword }}{% endcapture %}{% assign array = keywordsstr | split: ';' | sort %}{% endunless %}{% endfor %}{% endfor %}{% endcapture %}
+                {% endif %}
                 {% assign sortedkeywords = keywords | split: ';' | sort %}
                 {% for keyword in sortedkeywords %}
                     <button class="filter">{{ keyword }}</button>
                 {% endfor %}
             </div>
+            {% if page.from_posts %}{% else %}
+                <div class="filter-buttons">
+                  <button id="clear-filter-type">clear</button>
+                  {% assign str = '' %}
+                  {% assign array = str | split:';' | sort %}
+                  {% capture keywords %}{% for code in page.codes %}{% assign localarray = code.type | split:',' | sort %}{% for keyword in localarray %}{% unless array contains keyword %}{{ keyword }};{% capture keywordsstr %}{{ keywordsstr }};{{ keyword }}{% endcapture %}{% assign array = keywordsstr | split: ';' | sort %}{% endunless %}{% endfor %}{% endfor %}{% endcapture %}
+                  {% assign sortedkeywords = keywords | split: ';' | sort %}
+                  {% for keyword in sortedkeywords %}
+                      <button class="filter-type">{{ keyword }}</button>
+                  {% endfor %}
+                </div>
+            {% endif %}
             <ul class='list grid'>
             {% if page.from_posts %}
               {% for post in site.categories[page.category] %}
@@ -34,6 +50,7 @@
                     <div class='title'>{% if post.long_title %}<div class='long-title'>{% endif %}{{post.title}}{% if post.long_title %}</div>{% endif %}</div>
                     <div class='date'>{{ post.date }}</div>
                     <div class='keywords'>{{ post.keywords }}</div>
+                    <div class='type'>{{ post.type }}</div>
                     {% if post.image.feature %}<div class="cell-bg-image"  style="background-image: url({{ site.baseurl }}/{{ post.image.feature }})"></div>{% endif %}
                 </a>
               </li>
@@ -41,7 +58,10 @@
             {% else %}
               {% for code in page.codes %}
               <a class="cell" href="../{{code.link}}" type="{{code.type}}" keywords="{{code.type}},{{code.keywords}}">
-                <div class='title'>{{code.title}}</div>
+                <div class='title'>{% if code.long_title %}<div class='long-title'>{% endif %}{{code.title}}{% if code.long_title %}</div>{% endif %}</div>
+                <div class='type'>{{ code.type }}</div>
+                <div class='date'>{{ code.date }}</div>
+                <div class='keywords'>{{ code.keywords }}</div>
               </a>
               {% endfor %}
             {% endif %}
@@ -51,7 +71,7 @@
         <script src="{{ site.url }}/assets/list.js"></script>
         <script>
         var options = {
-          valueNames: [ 'title', 'long-title', 'date', 'keywords' ]
+          valueNames: [ 'title', 'long-title', 'date', 'keywords', 'type' ]
         };
 
         var userList = new List('users', options);
@@ -67,7 +87,22 @@
           });
           return false;
         });
+        $('.filter-type').click(function() {
+          string = $(this).text();
+          userList.filter(function(item) {
+            if (item.values().type.indexOf(string) != -1) {
+              return true;
+            } else {
+              return false;
+            }
+          });
+          return false;
+        });
         $('#clear-filter').click(function() {
+          userList.filter();
+          return false;
+        });
+        $('#clear-filter-type').click(function() {
           userList.filter();
           return false;
         });
