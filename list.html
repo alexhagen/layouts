@@ -6,14 +6,14 @@
         <header class="post-header">
           <hgroup>
             <h1>{{ page.title }}</h1>
-            <p class="intro">{% if page.description %}{{ page.description | markdownify }}{% else %}{{ page.tagline | markdownify }}{% endif %}</p>
+            <div class="intro">{% if page.description %}{{ page.description | markdownify }}{% else %}{{ page.tagline | markdownify }}{% endif %}</div>
           </hgroup>
           <!-- put the search/filter bar here -->
         </header>
 
 
-        <div id='users'>
-            <div class="sort-buttons">
+        <div style='width:100%;' id='users'>
+            <div style='max-width:33%; display: inline-block;' class="sort-buttons">
               <input type="checkbox" id="filter-sort-toggle" />
               <label class="button-container" for="filter-sort-toggle">
                 <span class="button-container-label">Sort</span>
@@ -22,7 +22,7 @@
               </label>
             </div>
 
-            <div class="filter-buttons">
+            <div style='max-width:33%; display: inline-block;' class="filter-buttons">
               <input type="checkbox" id="filter-tags-toggle" />
               <label class="button-container" for="filter-tags-toggle">
                 <span class="button-container-label">Tags</span>
@@ -41,7 +41,7 @@
               </label>
             </div>
             {% if page.from_posts %}{% else %}
-                <div class="filter-type-buttons">
+                <div style='max-width:33%; display: inline-block;' class="filter-type-buttons">
                   <input type="checkbox" id="filter-button-toggle" />
                   <label class="button-container" for="filter-button-toggle">
                     <span class="button-container-label">Type</span>
