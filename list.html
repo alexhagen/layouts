@@ -69,6 +69,7 @@
                     <div class='date'>{{ post.date }}</div>
                     <div class='keywords'>{{ post.keywords }}</div>
                     <div class='type'>{{ post.type }}</div>
+                    {% if post.description %}<div class='description'>{{ post.description | escape | strip | remove: '"' }}</div>{% endif %}
                     {% if post.image.feature %}<div class="cell-bg-image"  style="background-image: url({{ site.baseurl }}/{{ post.image.feature }})"></div>{% endif %}
                 </a>
               </li>
@@ -80,6 +81,7 @@
                 <div class='type'>{{ code.type }}</div>
                 <div class='date'>{{ code.date }}</div>
                 <div class='keywords'>{{ code.keywords }}</div>
+                {% if code.description %}<div class='description'>{{ code.description | escape | strip | remove: '"' }}</div>{% endif %}
               </a>
               {% endfor %}
             {% endif %}
