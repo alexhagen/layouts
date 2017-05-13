@@ -51,6 +51,10 @@
 
         {{ content }}
 
+        {% if page.comments %}
+          {% include comments.html %}
+        {% endif %}
+
       </article>
     </section>
 </div>
