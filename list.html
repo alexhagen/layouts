@@ -61,7 +61,7 @@
 
 
             <ul class='list grid'>
-              {{ content }}
+            {% if page.content_before %}  {{ content }} {% endif %}
             {% if page.from_posts %}
               {% for post in site.categories[page.category] %}
               <li class="cell">
@@ -86,7 +86,7 @@
               </a>
               {% endfor %}
             {% endif %}
-
+            {% unless page.content_before %} {{ content }}{% endunless %}
             </ul>
         </div>
         <script src="{{ site.url }}/assets/list.js"></script>
